@@ -1,5 +1,8 @@
 from deoldify import device
 from deoldify.device_id import DeviceId
+import os
+
+os.environ["TORCH_HOME"] = "./models"
 #choices:  CPU, GPU0...GPU7
 device.set(device=DeviceId.GPU0)
 
