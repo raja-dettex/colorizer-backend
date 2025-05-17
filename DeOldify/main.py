@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import os
+from service import transform_from_filepath
 
 app = Flask(__name__)
-upload_folder = os.path.join(os.path.abspath(os.curdir), 'DeOldify', 'uploads')
+upload_folder = os.path.join(os.path.abspath(os.curdir), 'uploads')
 allowed_extensions = ['jpg', 'jpeg', 'png']
 
 def allowed(file: str):
@@ -34,6 +35,14 @@ def upload_file():
             'path' : path
         })
 
+
+@app.route("/download/<filename>")
+def download_file(filename):
+    path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    print('uploaded path: ', path)
+    image_path = transform_from_filepath(path)
+    print(image_path)
+    return send_file(image_path, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=7000)

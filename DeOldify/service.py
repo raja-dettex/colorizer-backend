@@ -14,10 +14,10 @@ import os
 def transform_from_filepath(filepath: str):
     if filepath is not None and os.path.exists(filepath):
         image_path = colorizer.plot_transformed_image(filepath)
-        print(image_path)
+        return image_path
     else:
         print('filepath does not exist')
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-print(ROOT_DIR)
-transform_from_filepath(os.path.join(ROOT_DIR, 'test_images', 'image.png'))
+# ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+# print(ROOT_DIR)
+# transform_from_filepath(os.path.join(ROOT_DIR, 'test_images', 'image.png'))
     
